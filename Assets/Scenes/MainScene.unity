@@ -558,6 +558,7 @@ EdgeCollider2D:
   m_EdgeRadius: 0
   m_Points:
   - {x: -5.5841026, y: -1.4972364}
+  - {x: -5.624082, y: -1.5172261}
   - {x: -5.6321855, y: 1.3924091}
   - {x: -5.592642, y: 1.414473}
   - {x: -5.500675, y: 1.469702}
@@ -7371,13 +7372,13 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
   m_Mass: 0.92839694
-  m_LinearDrag: 1
+  m_LinearDrag: 0.0001
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &1855073367
 MonoBehaviour:
@@ -7393,6 +7394,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   yFrozen: 0
+  fsm: 0
+  e: {fileID: 642947662}
 --- !u!1 &1923582897
 GameObject:
   m_ObjectHideFlags: 0
