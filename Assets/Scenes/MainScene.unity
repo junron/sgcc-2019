@@ -7394,8 +7394,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   yFrozen: 0
-  fsm: 0
-  e: {fileID: 642947662}
+  fsm: 1
+  targets:
+  - {fileID: 1224002744}
+  - {fileID: 937929487}
+  - {fileID: 1102690798}
+  - {fileID: 89675101}
 --- !u!1 &1923582897
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ public class MainCharacterController : MonoBehaviour
     private Vector3 currentState = Vector3.up;
     private Vector3[] possibleStates = {Vector3.up,Vector3.down,Vector3.right,Vector3.left};
     private Rigidbody2D rb2d;
-    [SerializeField] private Collider2D e;
+    [SerializeField] private Collider2D[] targets;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,20 +36,33 @@ public class MainCharacterController : MonoBehaviour
     void FixedUpdate()
     {
         if(fsm){
-            Vector3 closestPoint = e.ClosestPoint(transform.position);
-            float distance = Vector3.Distance(closestPoint, transform.position);
-            // If it hits something...
-            if (distance<0.55)
+            float minDistance = 1000f;
+            Vector3 closest = Vector3.zero;
+            foreach (Collider2D target in targets)
             {
-                Debug.Log("Hit");
-                Vector3 newState = this.currentState;
-                while(newState==currentState){
-                    int choice = Random.Range(0,4);
-                    Debug.Log(choice);
-                    newState = this.possibleStates[choice];
+                if(target==null){
+                    continue;
                 }
-                this.currentState = newState;
-                this.rb2d.AddForce(this.currentState*300);
+                Vector3 closestPoint = target.ClosestPoint(transform.position);
+                float distance = Vector3.Distance(closestPoint, transform.position);
+                if(distance<minDistance){
+                    minDistance = distance;
+                    closest = closestPoint;
+                }
+            }
+            if(closest==Vector3.zero){
+                return;
+            }
+            float distanceX = Mathf.Abs(closest.x-transform.position.x);
+            float distanceY = Mathf.Abs(closest.y-transform.position.y);
+            Debug.Log(distanceX+" "+distanceY);
+            if(distanceX>distanceY){
+                // Move horizontally first
+                int horizontal = closest.x > transform.position.x ? 1 :-1;
+                transform.position += new Vector3(horizontal,0,0)*Time.deltaTime*speed;
+            }else{
+                int vertical = closest.y > transform.position.y ? 1 :-1;
+                transform.position += new Vector3(0,vertical,0)*Time.deltaTime*speed;
             }
         }
     }
