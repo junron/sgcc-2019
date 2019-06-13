@@ -1,4 +1,6 @@
-    
+.vscode
+.idea
+Assets/Plugins
 # =============== #
 # Unity generated #
 # =============== #
