@@ -40,20 +40,18 @@ public class MainCharacterController : MonoBehaviour
     Vector3 closestPoint = e.ClosestPoint(position);
     float distance = Vector3.Distance(closestPoint, position);
     // If it hits something...
-    if (distance < 0.55)
+    if (!(distance < 0.55)) return;
+    Debug.Log("Hit");
+    Vector3 newState = currentState;
+    while (newState == currentState)
     {
-      Debug.Log("Hit");
-      Vector3 newState = currentState;
-      while (newState == currentState)
-      {
-        int choice = Random.Range(0, 4);
-        Debug.Log(choice);
-        newState = possibleStates[choice];
-      }
-
-      currentState = newState;
-      rb2d.AddForce(currentState * 300);
+      int choice = Random.Range(0, 4);
+      Debug.Log(choice);
+      newState = possibleStates[choice];
     }
+
+    currentState = newState;
+    rb2d.AddForce(currentState * 300);
   }
 
   public void FreezeY()

@@ -12,7 +12,7 @@ public class TutorialRunner : MonoBehaviour
   Tutorial t;
 
 
-  void Start()
+  private void Start()
   {
     TutorialMask blobMask = new TutorialMask(blob, false, 3, 2);
     TutorialMask coinMask = new TutorialMask(coin, true);
@@ -35,11 +35,7 @@ public class TutorialRunner : MonoBehaviour
         "Yay! You did it!",
         callback =>
         {
-          GameObject.Find("coin").GetComponent<Coin>().SetCallback(() =>
-          {
-            // Interactive component cleanup
-            callback();
-          });
+          GameObject.Find("coin").GetComponent<Coin>().SetCallback(callback);
         }
       )
     );
@@ -54,16 +50,11 @@ public class TutorialRunner : MonoBehaviour
   }
 
   // Update is called once per frame
-  void Update()
+  private void Update()
   {
     if (Input.GetKeyDown("space"))
     {
       t.Next();
-    }
-
-    if (Input.GetKeyDown("q"))
-    {
-      Application.Quit();
     }
   }
 }

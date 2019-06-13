@@ -8,6 +8,7 @@ public class ExitSettings : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        settingsMenu.SetActive(false);
         exitBtn.onClick.AddListener(Exit);
     }
 

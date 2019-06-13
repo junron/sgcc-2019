@@ -7,7 +7,7 @@ public class GameEnd : MonoBehaviour
   [SerializeField] private GameObject gameEndPanel;
 
   // Start is called before the first frame update
-  Transform trans;
+  private Transform trans;
 
   void Start()
   {

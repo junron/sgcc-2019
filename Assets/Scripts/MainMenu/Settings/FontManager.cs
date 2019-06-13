@@ -6,12 +6,11 @@ public class FontManager : MonoBehaviour
   [SerializeField] private Button increaseButton;
   [SerializeField] private Button decreaseButton;
   [SerializeField] private Text fontSizeOut;
-  public static int fontSize { get; private set; } = 16;
 
   // Start is called before the first frame update
-  void Start()
+  private void Start()
   {
-    fontSizeOut.fontSize = fontSize;
+    fontSizeOut.fontSize = Variables.fontSize;
     increaseButton.onClick.AddListener(Increase);
     decreaseButton.onClick.AddListener(Decrease);
   }
@@ -19,21 +18,32 @@ public class FontManager : MonoBehaviour
   // Update is called once per frame
   private void Increase()
   {
-    if (fontSize == 28)
+    if (Variables.fontSize == 32)
       return;
 
-    fontSize++;
-    fontSizeOut.text = fontSize.ToString();
-    fontSizeOut.fontSize = fontSize;
+    Variables.fontSize++;
+    fontSizeOut.text = Variables.fontSize.ToString();
+    fontSizeOut.fontSize = Variables.fontSize;
+    UpdateFont();
   }
 
   private void Decrease()
   {
-    if (fontSize == 14)
+    if (Variables.fontSize == 16)
       return;
+    Variables.fontSize--;
+    fontSizeOut.text = Variables.fontSize.ToString();
+    fontSizeOut.fontSize = Variables.fontSize;
+    UpdateFont();
+  }
 
-    fontSize--;
-    fontSizeOut.text = fontSize.ToString();
-    fontSizeOut.fontSize = fontSize;
+  private void UpdateFont()
+  {
+    GameObject[] texts = GameObject.FindGameObjectsWithTag("CoreText");
+    foreach (GameObject textObj in texts)
+    {
+      Text text = textObj.GetComponent<Text>();
+      text.fontSize = Variables.fontSize;
+    }
   }
 }
