@@ -11,7 +11,10 @@ public class KeycodeHandler : MonoBehaviour
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject settingsPanel;
 
-
+    private void Start()
+    {
+        FontManager.UpdateFont();
+    }
     void Update()
     {
         if (pauseKeyCode != KeyCode.None)

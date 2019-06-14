@@ -37,7 +37,7 @@ public class FontManager : MonoBehaviour
     UpdateFont();
   }
 
-  private void UpdateFont()
+  public static void UpdateFont()
   {
     GameObject[] texts = GameObject.FindGameObjectsWithTag("CoreText");
     foreach (GameObject textObj in texts)

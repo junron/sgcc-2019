@@ -6,7 +6,7 @@ public class Coin : MonoBehaviour
 {
   // Start is called before the first frame update
   public GameObject player;
-  [SerializeField] private Text t;
+  [SerializeField] private HealthBar coinIndicator;
   private Action callback;
   bool playerGetCoin;
 
@@ -20,13 +20,9 @@ public class Coin : MonoBehaviour
   {
     if (!playerGetCoin) return;
 
-    string text = t.text;
-    text = text.Replace("Coins: ", "");
-    Debug.Log(text);
-    int coins = Int32.Parse(text);
-    t.text = "Coins: " + (coins + 1);
+    coinIndicator.barValue++;
     callback?.Invoke();
-    Destroy(gameObject);
+    Destroy(this.gameObject);
   }
 
   public void SetCallback(Action callback)
