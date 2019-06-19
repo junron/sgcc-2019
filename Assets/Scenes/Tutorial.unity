@@ -365,6 +365,40 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &352739758 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1591152687467892408, guid: 99caeec6413294641b6fd7a2f4f5b099,
+    type: 3}
+  m_PrefabInstance: {fileID: 1560779996}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &352739759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352739758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 725bf5ddb878f09429d39010d9e2d59a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Component: {fileID: 352739760}
+  m_Property: text
+  m_LocalizedAsset: {fileID: 11400000, guid: 44891a61df698054aaaed1ffa15341f3, type: 2}
+  m_FormatArgs: []
+--- !u!114 &352739760 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2246688162019214517, guid: 99caeec6413294641b6fd7a2f4f5b099,
+    type: 3}
+  m_PrefabInstance: {fileID: 1560779996}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352739758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,7 +1234,24 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1824857581679109844, guid: 99caeec6413294641b6fd7a2f4f5b099,
+        type: 3}
+      propertyPath: m_Options.m_Options.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6235790933586124449, guid: 99caeec6413294641b6fd7a2f4f5b099,
+        type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6451002027701837649, guid: 99caeec6413294641b6fd7a2f4f5b099,
+        type: 3}
+      propertyPath: m_LocalizedAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: d6711a25c35ed8b418cb89caa30b7ed1,
+        type: 2}
+    m_RemovedComponents:
+    - {fileID: 7180424659456084009, guid: 99caeec6413294641b6fd7a2f4f5b099, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 99caeec6413294641b6fd7a2f4f5b099, type: 3}
 --- !u!1 &1560779997 stripped
 GameObject:

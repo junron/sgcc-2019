@@ -9,7 +9,7 @@ public class TutorialRunner : MonoBehaviour
   [SerializeField] private GameObject pMask;
   [SerializeField] private Text tutorialText;
   [SerializeField] private Camera cam;
-  Tutorial t;
+  private Tutorial t;
 
 
   private void Start()
@@ -43,7 +43,7 @@ public class TutorialRunner : MonoBehaviour
       new TutorialComponent(
         exitMask,
         "This is the exit. Navigate Blob to the exit to complete the game!",
-        afterInit: () => { blob.GetComponent<Transform>().position = new Vector3(4, 3.5f, 0); }
+        () => { blob.GetComponent<Transform>().position = new Vector3(4, 3.5f, 0); }
       )
     );
     t.Start();
