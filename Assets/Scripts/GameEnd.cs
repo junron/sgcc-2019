@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameEnd : MonoBehaviour
 {
@@ -29,7 +30,8 @@ public class GameEnd : MonoBehaviour
   // Update is called once per frame
   void OnTriggerEnter2D(Collider2D collider)
   {
-    gameEndPanel.SetActive(true);
-    Time.timeScale = 0;
+//    gameEndPanel.SetActive(true);
+//    Time.timeScale = 0;
+    SceneManager.LoadScene("Exercise");
   }
 }
