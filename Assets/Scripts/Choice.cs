@@ -64,7 +64,7 @@ public class Choice
         return input;
     }
 
-    int Select() //use numbers to select choices
+    int Select()
     {
         
         if (Input.GetKeyDown(KeyCode.Keypad1))
