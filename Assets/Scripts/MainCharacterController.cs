@@ -6,6 +6,8 @@ public class MainCharacterController : MonoBehaviour
 
   public bool yFrozen;
 
+  public bool xFrozen;
+
   // Should actually be called randomize
   public bool fsm;
   private Vector3 currentState = Vector3.up;
@@ -28,7 +30,7 @@ public class MainCharacterController : MonoBehaviour
   void Update()
   {
     if (fsm) return;
-    float horizontal = Input.GetAxis("Horizontal");
+    float horizontal = xFrozen ? 0 : Input.GetAxis("Horizontal");
     float vert = yFrozen ? 0 : Input.GetAxis("Vertical");
     transform.position += new Vector3(horizontal, vert, 0) * Time.deltaTime * speed;
   }
@@ -40,7 +42,7 @@ public class MainCharacterController : MonoBehaviour
     Vector3 closestPoint = e.ClosestPoint(position);
     float distance = Vector3.Distance(closestPoint, position);
     // If it hits something...
-    if (!(distance < 0.55)) return;
+    if (!(distance < 1.0)) return;
     Debug.Log("Hit");
     Vector3 newState = currentState;
     while (newState == currentState)
@@ -57,5 +59,18 @@ public class MainCharacterController : MonoBehaviour
   public void FreezeY()
   {
     yFrozen = true;
+  }
+
+  public void FreeY(){
+    yFrozen = false;
+  }
+
+  public void FreezeX()
+  {
+    xFrozen = true;
+  }
+
+  public void FreeX(){
+    xFrozen = false;
   }
 }

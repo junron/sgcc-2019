@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+//using UnityEngine.SceneManagement; not anymore
 using UnityEngine.UI;
 
 public class Tutorial
@@ -11,7 +11,7 @@ public class Tutorial
   private TutorialComponent last;
   private Camera cam;
   private string s;
-
+  public GameObject player;
   public Tutorial(Text textOutput, string s, Camera cam,
     string startText =
       "Welcome to Blobbo. This tutorial will guide you through how to play the game.\nPress space to continue or q to quit.",
@@ -82,6 +82,7 @@ public class Tutorial
   public void Continue()
   {
     Time.timeScale = 1;
-    SceneManager.LoadScene(s);
+    TutorialRunner.completed = true;
+    Tutorial2.complete = true;
   }
 }
