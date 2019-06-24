@@ -26,6 +26,11 @@ public class TargetBox : MonoBehaviour
     onStateChange(overlaps);
   }
 
+  private void OnTriggerExit2D(Collider2D other)
+  {
+    OnTriggerStay2D(other);
+  }
+
   private bool CompleteOverlap(IList<Vector2> box, IList<Vector2> target)
   {
     //Variables are [min,max] pairs
