@@ -1,19 +1,34 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class DropTarget : MonoBehaviour
 {
-  public Droppable occupant;
-  private SpriteRenderer renderer;
-  private bool closest;
+  [SerializeField] private Animator animator;
 
-  private void Start()
+  private List<Action<Droppable>> callbacks = new List<Action<Droppable>>();
+  private Droppable _occupant;
+  public Droppable occupant
   {
-    renderer = GetComponent<SpriteRenderer>();
+    get => _occupant;
+    set
+    {
+      _occupant = value;
+      foreach (Action<Droppable> callback in callbacks)
+      {
+        callback(_occupant);
+      }
+    }
   }
 
+  private static readonly int Closest = Animator.StringToHash("closest");
   public void SetClosest(bool closest)
   {
-    this.closest = closest;
-    renderer.color = closest ? Color.green : Color.black;
+    animator.SetBool(Closest,closest);
+  }
+
+  public void AddCallback(Action<Droppable> callback)
+  {
+    callbacks.Add(callback);
   }
 }
