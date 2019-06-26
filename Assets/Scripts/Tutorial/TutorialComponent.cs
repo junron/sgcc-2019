@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class TutorialComponent : ITutorialComponent
 {
-  public GameObject mask { get; private set; }
-  public GameObject gObject { get; private set; }
+  private GameObject mask { get; set; }
+  private GameObject gObject { get; set; }
   public Text textOutput { get; set; }
   private string text;
   private Action afterInit;
@@ -13,8 +13,8 @@ public class TutorialComponent : ITutorialComponent
 
   public TutorialComponent(TutorialMask mask, string text, Action afterInit = null)
   {
-    this.mask = mask == null ? null : mask.mask;
-    gObject = mask == null ? null : mask.gObject;
+    this.mask = mask?.mask;
+    gObject = mask?.gObject;
     this.text = text;
     this.afterInit = afterInit;
   }
@@ -23,19 +23,12 @@ public class TutorialComponent : ITutorialComponent
   {
   }
 
-  public TutorialComponent(TutorialMask mask) : this(mask, null)
-  {
-  }
-
   public void Show()
   {
     Time.timeScale = 0;
-    if (mask) mask.SetActive(true);
-    if (textOutput != null && text != null) textOutput.text = text;
-    if (afterInit != null)
-    {
-      afterInit();
-    }
+    if (this.mask) this.mask.SetActive(true);
+    if (this.textOutput != null && text != null) textOutput.text = text;
+    afterInit?.Invoke();
   }
 
   public void Hide()
