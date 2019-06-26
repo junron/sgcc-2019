@@ -18,9 +18,9 @@ public class Tutorial2 : MonoBehaviour
     void Start()
     {
         MainCharacterController blobScript = blob.GetComponent<MainCharacterController>();
-        blobScript.FreeY();
-        choice.SetDescription("Let's add some vegetables to the soup!");
-        choice.SetChoices("charcoal","wood","chicken","spinach");
+        blobScript.FreeY();        
+        choice.Add("charcoal","wood","chicken","spinach","Let's add some vegetables to the soup!","4441");
+        choice.Add("dynamite", "tomato","pork","salt","Let's add more vegetables!","4132");
         
     }
 
@@ -32,20 +32,10 @@ public class Tutorial2 : MonoBehaviour
             return;
         }
         choice.Show();
-        int x = choice.SelectChoice();
-        if (x == 4)
-            Next();
-
+        int x = choice.SelectChoice(); 
+        //do some action
+        choice.Next();
     }
 
-    void Next(){
-        if (index == textLst.Count)
-        {
-            Time.timeScale = 1;
-            SceneManager.LoadScene("MainScene");
-        }
-        choice.SetDescription("Let's add more vegetables!");
-        choice.SetChoices("dynamite", "tomato","pork","salt");
-
-    }
+    
 }
