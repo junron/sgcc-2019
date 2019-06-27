@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 //using UnityEngine.SceneManagement; not anymore
 using UnityEngine.UI;
 
@@ -10,7 +11,7 @@ public class Tutorial
   private int currentComponentIndex;
   private readonly TutorialComponent last;
   private Camera cam;
-  private string s;
+  private readonly string s;
   public GameObject player;
   public Tutorial(Text textOutput, string s, Camera cam,
     string startText =
@@ -81,5 +82,6 @@ public class Tutorial
   private void Continue()
   {
     Time.timeScale = 1;
+    SceneManager.LoadScene(s);
   }
 }

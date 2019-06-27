@@ -22,7 +22,7 @@ public class TutorialRunner : MonoBehaviour
     TutorialMask giftMask = new TutorialMask(gift, false, 2, 2);
     TutorialMask pathMask = new TutorialMask(null, pMask);
     MainCharacterController blobScript = blob.GetComponent<MainCharacterController>();
-    t = new Tutorial(tutorialText, "MainScene", cam);
+    t = new Tutorial(tutorialText, "Falls", cam);
     t.Add(new TutorialComponent(blobMask,
       "This is you. You are an ordinary elderly person. You normally just stay at home and watch TV."));
     t.Add(new TutorialComponent(blobMask, "But today is no ordinary day. It's your grandson's birthday."));
