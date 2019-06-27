@@ -7,23 +7,20 @@ public class DropTarget : MonoBehaviour
   [SerializeField] private Animator animator;
 
   private List<Action<Droppable>> callbacks = new List<Action<Droppable>>();
-  private Droppable _occupant;
-  public Droppable occupant
+  public Droppable occupant;
+
+  public void Trigger()
   {
-    get => _occupant;
-    set
+    foreach (Action<Droppable> callback in callbacks)
     {
-      _occupant = value;
-      foreach (Action<Droppable> callback in callbacks)
-      {
-        callback(_occupant);
-      }
+      callback(occupant);
     }
   }
 
   private static readonly int Closest = Animator.StringToHash("closest");
   public void SetClosest(bool closest)
   {
+    if (animator == null) return;
     animator.SetBool(Closest,closest);
   }
 

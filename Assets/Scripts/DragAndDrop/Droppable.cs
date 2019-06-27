@@ -9,6 +9,7 @@ public class Droppable : MonoBehaviour
 
   [SerializeField] private DropTarget[] targets;
   [SerializeField] private float threshold;
+  [SerializeField] private GameObject home;
 
   private Vector3[] targetPositions;
   private DropTarget closestTarget;
@@ -44,6 +45,7 @@ public class Droppable : MonoBehaviour
     }
 
     if (minIndex == -1) return;
+    if (Mathf.Abs(Vector3.Distance(thisPosition, home.transform.position)) < minDist) return;
 
     DropTarget target = targets[minIndex];
     closestTarget = target;
@@ -52,8 +54,21 @@ public class Droppable : MonoBehaviour
 
   private void OnMouseUp()
   {
-    if (closestTarget == null) return;
+    if (closestTarget == null)
+    {
+      if (home == null) return;
+      rb.MovePosition(home.GetComponent<Transform>().position);
+      return;
+    }
     closestTarget.occupant = this;
     rb.MovePosition(closestTarget.GetComponent<Transform>().position);
+    closestTarget.Trigger();
+  }
+
+  public void MoveHome()
+  {
+    if (home == null) return;
+    closestTarget = null;
+    rb.MovePosition(home.GetComponent<Transform>().position);
   }
 }

@@ -31,6 +31,7 @@ public class InteractiveTutorialComponent : ITutorialComponent
     textOutput.text = promptText;
     afterInit(() =>
     {
+      Debug.Log("completed");
       textOutput.text = completedText;
       completed = true;
     });

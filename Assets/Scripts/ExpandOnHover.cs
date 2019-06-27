@@ -1,18 +1,18 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ExpandOnHover : MonoBehaviour
 {
   [SerializeField] private Animator controller;
+  public bool disabled;
   private void OnMouseEnter()
   {
-    Debug.Log("mousever");
+    if (disabled) return;
     controller.SetTrigger("Mouseover");
   }
 
   private void OnMouseExit()
   {
-    Debug.Log("exit");
+    if (disabled) return;
     controller.SetTrigger("Mouseexit");
   }
 }

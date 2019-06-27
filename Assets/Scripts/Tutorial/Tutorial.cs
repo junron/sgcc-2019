@@ -1,29 +1,29 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+//using UnityEngine.SceneManagement; not anymore
 using UnityEngine.UI;
 
 public class Tutorial
 {
-  private Text textOutput;
-  private List<ITutorialComponent> components;
+  private readonly Text textOutput;
+  private readonly List<ITutorialComponent> components;
   private int currentComponentIndex;
-  private TutorialComponent last;
+  private readonly TutorialComponent last;
   private Camera cam;
-  private string s;
-
+  private readonly string s;
+  public GameObject player;
   public Tutorial(Text textOutput, string s, Camera cam,
     string startText =
-      "Welcome to Blobbo. This tutorial will guide you through how to play the game.\nPress space to continue or q to quit.",
-    string endText = "You have come to the end of the tutorial. Press space to play the game."
+      "Welcome to Generation Silver! I’m your in-game assistant, here to help you get through the game! Press space to continue.",
+    string endText = "You have successfully completed the tutorial. Press space to play the game."
   )
   {
     this.cam = cam;
     this.textOutput = textOutput;
     components = new List<ITutorialComponent>();
     Add(new TutorialComponent(startText));
-    last = new TutorialComponent(endText);
-    last.textOutput = this.textOutput;
+    last = new TutorialComponent(endText) {textOutput = this.textOutput};
     this.s = s;
   }
 
@@ -34,7 +34,7 @@ public class Tutorial
     components.Add(c);
   }
 
-  public void Next(int index)
+  private void Next(int index)
   {
     Debug.Log(index + " " + components.Count);
     if (index >= components.Count)
@@ -72,14 +72,14 @@ public class Tutorial
     Next(0);
   }
 
-  public void End()
+  private void End()
   {
     ITutorialComponent prev = components[currentComponentIndex];
     prev.Hide();
     last.Show();
   }
 
-  public void Continue()
+  private void Continue()
   {
     Time.timeScale = 1;
     SceneManager.LoadScene(s);

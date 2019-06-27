@@ -12,8 +12,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial.unity
     guid: 4e596c118c370784da6274f11cb2be0e
   - enabled: 1
-    path: Assets/Scenes/MainScene.unity
+    path: Assets/Scenes/Falls.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Park.unity
+    guid: 6c65a15f21102d743a4345faf57b0696
   - enabled: 1
     path: Assets/Scenes/Exercise.unity
     guid: 1145375e84952ee409100086194f15dd
