@@ -14,6 +14,8 @@ public class HazardRemover : MonoBehaviour
   [SerializeField] private List<GameObject> replacementSprites;
   [SerializeField] private GameObject mits;
   [SerializeField] private GameObject bg;
+  [SerializeField] private HealthBar health;
+  [SerializeField] private GameObject exit;
 
   private bool taskCompleted;
   private int hazardsRemoved;
@@ -36,10 +38,12 @@ public class HazardRemover : MonoBehaviour
     textNo++;
     if (textNo >= texts.Length)
     {
+
       return;
     }
 
     text.text = texts[textNo];
+    if(textNo==7) exit.SetActive(true);
     if (textNo != taskStartStringNo) return;
     mits.SetActive(true);
     bg.SetActive(true);
@@ -69,6 +73,8 @@ public class HazardRemover : MonoBehaviour
         else
         {
           mitigation.MoveHome();
+          health.barValue -= 10;
+          Variables.health -= 10;
           text.text = "That's not the correct answer. Try again!";
         }
 

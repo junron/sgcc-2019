@@ -1,21 +1,30 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Exercise :MonoBehaviour
 {
-  [SerializeField] private Text t;
+  [SerializeField] private Text tPlayer;
   [SerializeField] private string[] texts;
   [SerializeField] private int taskStartStringNo;
   [SerializeField] private GameObject target;
+  [SerializeField] private Animator animator;
+  [SerializeField] private Button demoButton;
+  [SerializeField] private HealthBar healthBar;
+  [SerializeField] private HealthBar happiness;
+
   private int textNo;
   private TargetBox targetBox;
   private bool taskCompleted;
 
   private void Start()
   {
+    Debug.Log(Variables.fontSize);
+    healthBar.barValue = Variables.health;
     targetBox = target.GetComponent<TargetBox>();
-    t.text = texts[0];
+    demoButton.onClick.AddListener(RunDemo);
+    SetText(texts[0]);
   }
 
   private void Update()
@@ -29,15 +38,43 @@ public class Exercise :MonoBehaviour
       Destroy(this.gameObject);
       return;
     }
-    t.text = texts[textNo];
-    if (textNo == taskStartStringNo)
+    SetText(texts[textNo]);
+    if (textNo == 8)
     {
-      targetBox.onStateChange = completed =>
-      {
-        taskCompleted = completed;
-        t.text = completed ? "Task completed!" : texts[textNo];
-        target.GetComponent<SpriteRenderer>().color = completed ? Color.green : Color.black;
-      };
+      StartCoroutine(WaitAndDo(0.75f, RunDemo));
     }
+    if (textNo != taskStartStringNo) return;
+    target.SetActive(true);
+    StartCoroutine(WaitAndDo(2, () => { SetText("Move your left leg into the black box"); }));
+
+    targetBox.onStateChange = completed =>
+    {
+      if (completed && !taskCompleted)
+      {
+        healthBar.barValue += 15;
+        happiness.barValue += 15;
+        Variables.health += 15;
+        Variables.happiness += 15;
+      }
+      if (completed) taskCompleted = true;
+
+      tPlayer.text = taskCompleted ? "Task completed!" : "Move your left leg into the black box";
+      target.GetComponent<SpriteRenderer>().color = completed ? Color.green : Color.black;
+    };
+  }
+
+  private void SetText(string text)
+  {
+    tPlayer.text = text;
+  }
+
+  private void RunDemo()
+  {
+    demoButton.gameObject.SetActive(true);
+    animator.SetTrigger("StartDemo");
+  }
+  IEnumerator WaitAndDo (float time, Action action) {
+    yield return new WaitForSeconds (time);
+    action();
   }
 }

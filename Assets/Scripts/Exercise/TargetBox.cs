@@ -23,6 +23,7 @@ public class TargetBox : MonoBehaviour
     bool nowOverlaps = CompleteOverlap(bounds, otherBounds);
     if (nowOverlaps == overlaps) return;
     overlaps = nowOverlaps;
+    Debug.Log(onStateChange);
     onStateChange(overlaps);
   }
 
