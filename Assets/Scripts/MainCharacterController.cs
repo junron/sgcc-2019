@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class MainCharacterController : MonoBehaviour
 {
@@ -8,22 +9,20 @@ public class MainCharacterController : MonoBehaviour
 
   public bool xFrozen;
 
-  // Should actually be called randomize
-  private Vector3 currentState = Vector3.up;
-  private readonly Vector3[] possibleStates = {Vector3.up, Vector3.down, Vector3.right, Vector3.left};
   private Rigidbody2D rb2d;
 
   [SerializeField] private Collider2D e;
   private Vector3 target;
-  private bool _isTargetNull = true;
-  private bool _isCameraNotNull;
-  private Camera _camera;
+  private bool isTargetNull = true;
+  private bool isCameraNotNull;
+  private Camera mainCamera;
+  private Vector3 originalPosition;
 
   // Start is called before the first frame update
   void Start()
   {
-    _camera = Camera.main;
-    _isCameraNotNull = _camera != null;
+    mainCamera = Camera.main;
+    isCameraNotNull = mainCamera != null;
     rb2d = GetComponent<Rigidbody2D>();
     rb2d.freezeRotation = true;
   }
@@ -32,28 +31,32 @@ public class MainCharacterController : MonoBehaviour
   void Update()
   {
     Time.timeScale = 1;
+    Vector3 position = this.transform.position;
     if (Input.GetMouseButtonDown(0))
     {
-      if (_isCameraNotNull)
+      if (isCameraNotNull)
       {
-        target = _camera.ScreenToWorldPoint(Input.mousePosition);
-        print("Target reassigned");
+        target = mainCamera.ScreenToWorldPoint(Input.mousePosition);
       }
 
-      target.z = this.transform.position.z;
-      _isTargetNull = false;
+      originalPosition = position;
+      target.z = position.z;
+      isTargetNull = false;
     }
 
-    if (_isTargetNull) return;
+    if (isTargetNull) return;
     //    Prevent jiggling when reach destination
-    if ((target - transform.position).sqrMagnitude < 0.005)
+    if ((target - position).sqrMagnitude < 0.005)
     {
       transform.position = target;
       return;
     }
 
+    //    Completed distance / total distance
+    float percentageCompleted = (originalPosition - position).sqrMagnitude / (originalPosition - target).sqrMagnitude;
     Vector3 direction = (target - transform.position).normalized;
-    rb2d.velocity = direction * speed;
+    //    Ensure at least 20% speed at all times
+    rb2d.velocity = 1.5f * Mathf.Max(0.1f, 1 - percentageCompleted) * speed * direction;
   }
 
   public void FreezeY()
