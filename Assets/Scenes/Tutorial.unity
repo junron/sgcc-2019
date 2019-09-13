@@ -869,11 +869,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.461192, y: 2.7682946, z: -1.4269559}
-  m_LocalScale: {x: 2.0027452, y: 1.4269559, z: 1.4269559}
+  m_LocalPosition: {x: 1.5899992, y: -0.7600001, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1855073364}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &542943179
 PrefabInstance:
@@ -1700,6 +1700,7 @@ MonoBehaviour:
   pMask: {fileID: 598980159}
   keys: {fileID: 1855118183}
   bMask: {fileID: 1440896285}
+  speed: 1.5
 --- !u!4 &1523325903
 Transform:
   m_ObjectHideFlags: 0
@@ -2111,8 +2112,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.13, y: -2.7, z: 0}
   m_LocalScale: {x: 0.49931464, y: 0.70079243, z: 0.70079243}
-  m_Children:
-  - {fileID: 519420032}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2129,7 +2129,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.2220527, y: 0.22601801}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2140,7 +2140,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.01, y: 1.32}
+  m_Size: {x: 2.4541056, y: 3.0377336}
   m_EdgeRadius: 0
 --- !u!50 &1855073366
 Rigidbody2D:
@@ -2154,14 +2154,14 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 0.92839694
+  m_Mass: 2.608595
   m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &1855073367
 MonoBehaviour:
@@ -2178,7 +2178,6 @@ MonoBehaviour:
   speed: 3
   yFrozen: 0
   xFrozen: 0
-  fsm: 0
   e: {fileID: 0}
 --- !u!1 &1855118183
 GameObject:
@@ -2331,9 +2330,12 @@ EdgeCollider2D:
   - {x: 9.507494, y: 2.621201}
   - {x: 5.5641623, y: 2.6205244}
   - {x: 5.521623, y: 0.8413644}
-  - {x: 4.5154877, y: 0.90472317}
+  - {x: 4.548267, y: 0.87194467}
+  - {x: 4.584178, y: 2.5596454}
   - {x: 4.485647, y: 2.6036215}
-  - {x: 4.482518, y: 2.7280085}
+  - {x: 4.5808525, y: 2.7280085}
+  - {x: 4.5946836, y: 2.8611999}
+  - {x: 4.5876775, y: 3.2360046}
   - {x: 4.5731063, y: 3.8150713}
   - {x: 4.4784203, y: 3.7151418}
   - {x: 9.370206, y: 3.8057308}

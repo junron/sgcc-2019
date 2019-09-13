@@ -12,9 +12,14 @@ public class TutorialRunner : MonoBehaviour
   [SerializeField] private GameObject bMask;
   private Tutorial t;
 
+  public float speed = 1.5f;
+  private Vector3 target;
+
+
 
   private void Start()
   {
+    target = transform.position;
     Interactable giftObj = gift.GetComponent<Interactable>();
     TutorialMask blobMask = new TutorialMask(blob, false, 4, 4);
     TutorialMask blobMask2 = new TutorialMask(blob, false, 10, 10);
