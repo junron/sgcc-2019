@@ -36,7 +36,6 @@ public class Tutorial
 
   private void Next(int index)
   {
-    Debug.Log(index + " " + components.Count);
     if (index >= components.Count)
     {
       if (index == components.Count)

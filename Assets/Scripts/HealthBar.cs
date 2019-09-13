@@ -8,6 +8,12 @@ public class HealthBar :MonoBehaviour
     [SerializeField] private Text text;
 
     private int _value;
+
+    private void Start()
+    {
+      _value = (int) slider.value;
+    }
+
     public int barValue
     {
       get => _value;
