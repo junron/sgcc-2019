@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MainCharacterController : MonoBehaviour
 {
@@ -36,7 +35,8 @@ public class MainCharacterController : MonoBehaviour
     {
       if (isCameraNotNull)
       {
-        target = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 clickPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        target = position + Vector3.ClampMagnitude(clickPos-position,10);
       }
 
       originalPosition = position;
@@ -55,8 +55,9 @@ public class MainCharacterController : MonoBehaviour
     //    Completed distance / total distance
     float percentageCompleted = (originalPosition - position).sqrMagnitude / (originalPosition - target).sqrMagnitude;
     Vector3 direction = (target - transform.position).normalized;
-    //    Ensure at least 20% speed at all times
-    rb2d.velocity = 1.5f * Mathf.Max(0.1f, 1 - percentageCompleted) * speed * direction;
+    print(Mathf.Max(0.3f, 1 - percentageCompleted));
+    //    Ensure at least 30% speed at all times
+    rb2d.velocity = 2f * Mathf.Max(0.3f, 1 - percentageCompleted) * speed * direction;
   }
 
   public void FreezeY()
