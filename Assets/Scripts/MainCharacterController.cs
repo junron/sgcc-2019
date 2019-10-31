@@ -4,13 +4,8 @@ public class MainCharacterController : MonoBehaviour
 {
   public float speed = 3.0f;
 
-  public bool yFrozen;
-
-  public bool xFrozen;
-
   private Rigidbody2D rb2d;
 
-  [SerializeField] private Collider2D e;
   private Vector3 target;
   private bool isTargetNull = true;
   private bool isCameraNotNull;
@@ -20,6 +15,8 @@ public class MainCharacterController : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
+    Time.timeScale = 1;
+    Variables.player = this.gameObject;
     mainCamera = Camera.main;
     isCameraNotNull = mainCamera != null;
     rb2d = GetComponent<Rigidbody2D>();
@@ -29,7 +26,6 @@ public class MainCharacterController : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    Time.timeScale = 1;
     Vector3 position = this.transform.position;
     if (Input.GetMouseButtonDown(0))
     {
@@ -55,28 +51,7 @@ public class MainCharacterController : MonoBehaviour
     //    Completed distance / total distance
     float percentageCompleted = (originalPosition - position).sqrMagnitude / (originalPosition - target).sqrMagnitude;
     Vector3 direction = (target - transform.position).normalized;
-    print(Mathf.Max(0.3f, 1 - percentageCompleted));
     //    Ensure at least 30% speed at all times
     rb2d.velocity = 2f * Mathf.Max(0.3f, 1 - percentageCompleted) * speed * direction;
-  }
-
-  public void FreezeY()
-  {
-    yFrozen = true;
-  }
-
-  public void FreeY()
-  {
-    yFrozen = false;
-  }
-
-  public void FreezeX()
-  {
-    xFrozen = true;
-  }
-
-  public void FreeX()
-  {
-    xFrozen = false;
   }
 }

@@ -11,11 +11,11 @@ public class Interactable : MonoBehaviour
   private Action detectCallback;
   private bool inRange;
   private Transform transform1;
-  private bool _isInteractTextNotNull;
+  private bool isInteractTextNotNull;
 
   private void Start()
   {
-    _isInteractTextNotNull = interactText!=null;
+    isInteractTextNotNull = interactText!=null;
     transform1 = target.GetComponent<Transform>();
   }
 
@@ -24,7 +24,7 @@ public class Interactable : MonoBehaviour
     if (inhibitInteraction) return;
     float distance = Mathf.Abs(Vector3.Distance(transform1.position, this.transform.position));
     inRange = distance < detectRadius;
-    if(_isInteractTextNotNull) interactText.SetActive(inRange);
+    if(isInteractTextNotNull) interactText.SetActive(inRange);
     if (inRange) detectCallback?.Invoke();
     if (!inRange || !Input.GetKeyDown(KeyCode.Space)) return;
     callback?.Invoke();
