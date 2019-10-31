@@ -32,24 +32,5 @@ public class HazardIdentifier : MonoBehaviour
 
     text.text = texts[textNo];
     if (textNo != taskStartStringNo) return;
-    foreach (GameObject hazard in hazards)
-    {
-      Clickable c = hazard.GetComponent<Clickable>();
-      c.clicked = false;
-      c.callback = () =>
-      {
-        if (c.clicked) return;
-        hazardsIdentified++;
-        taskCompleted = hazardsIdentified == hazards.Count;
-        if (taskCompleted)
-        {
-          text.text = "Congratulations! You have identified all hazards!";
-        }
-        else
-        {
-          text.text = $"{hazardsIdentified} hazards identified!";
-        }
-      };
-    }
   }
 }
