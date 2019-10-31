@@ -59,7 +59,6 @@ public class MainCharacterController : MonoBehaviour
     Vector3 direction = (target - transform.position).normalized;
     //    Ensure at least 30% speed at all times
     rb2d.velocity = 2f * Mathf.Max(0.3f, 1 - percentageCompleted) * speed * direction;
-    print(rb2d.velocity.sqrMagnitude);
     animator.SetBool(forward, rb2d.velocity.sqrMagnitude > 0);
   }
 }
