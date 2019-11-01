@@ -11,12 +11,16 @@ public class MainCharacterController : MonoBehaviour
   private bool isCameraNotNull;
   private Camera mainCamera;
   private Vector3 originalPosition;
+  private Animator animator;
+
+  private static readonly int forward = Animator.StringToHash("forward");
 
   // Start is called before the first frame update
   void Start()
   {
     Time.timeScale = 1;
     Variables.player = this.gameObject;
+    animator = GetComponent<Animator>();
     mainCamera = Camera.main;
     isCameraNotNull = mainCamera != null;
     rb2d = GetComponent<Rigidbody2D>();
@@ -32,7 +36,7 @@ public class MainCharacterController : MonoBehaviour
       if (isCameraNotNull)
       {
         Vector3 clickPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        target = position + Vector3.ClampMagnitude(clickPos-position,10);
+        target = position + Vector3.ClampMagnitude(clickPos - position, 10);
       }
 
       originalPosition = position;
@@ -45,6 +49,8 @@ public class MainCharacterController : MonoBehaviour
     if ((target - position).sqrMagnitude < 0.005)
     {
       transform.position = target;
+      rb2d.velocity = Vector2.zero;
+      animator.SetBool(forward, false);
       return;
     }
 
@@ -53,5 +59,6 @@ public class MainCharacterController : MonoBehaviour
     Vector3 direction = (target - transform.position).normalized;
     //    Ensure at least 30% speed at all times
     rb2d.velocity = 2f * Mathf.Max(0.3f, 1 - percentageCompleted) * speed * direction;
+    animator.SetBool(forward, rb2d.velocity.sqrMagnitude > 0);
   }
 }
