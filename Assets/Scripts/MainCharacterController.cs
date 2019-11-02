@@ -14,6 +14,7 @@ public class MainCharacterController : MonoBehaviour
   private Animator animator;
 
   private static readonly int forward = Animator.StringToHash("forward");
+  private static readonly int backward = Animator.StringToHash("backward");
 
   // Start is called before the first frame update
   void Start()
@@ -51,6 +52,7 @@ public class MainCharacterController : MonoBehaviour
       transform.position = target;
       rb2d.velocity = Vector2.zero;
       animator.SetBool(forward, false);
+      animator.SetBool(backward, false);
       return;
     }
 
@@ -58,7 +60,16 @@ public class MainCharacterController : MonoBehaviour
     float percentageCompleted = (originalPosition - position).sqrMagnitude / (originalPosition - target).sqrMagnitude;
     Vector3 direction = (target - transform.position).normalized;
     //    Ensure at least 30% speed at all times
-    rb2d.velocity = 2f * Mathf.Max(0.3f, 1 - percentageCompleted) * speed * direction;
-    animator.SetBool(forward, rb2d.velocity.sqrMagnitude > 0);
+    rb2d.velocity = 0.75f * 2f * Mathf.Max(0.3f, 1 - percentageCompleted) * speed * direction;
+    if (rb2d.velocity.y > 0)
+    {
+      animator.SetBool(backward, true);
+      animator.SetBool(forward, false);
+    }
+    else if (rb2d.velocity.y < 0)
+    {
+      animator.SetBool(forward, true);
+      animator.SetBool(backward, false);
+    }
   }
 }
