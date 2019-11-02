@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class MainCharacterController : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class MainCharacterController : MonoBehaviour
 
   private static readonly int forward = Animator.StringToHash("forward");
   private static readonly int backward = Animator.StringToHash("backward");
+  private static readonly int left = Animator.StringToHash("left");
+  private static readonly int right = Animator.StringToHash("right");
 
   // Start is called before the first frame update
   void Start()
@@ -42,6 +45,47 @@ public class MainCharacterController : MonoBehaviour
 
       originalPosition = position;
       target.z = position.z;
+      rb2d.AddForce((target - position) * 300);
+      switch (GetDirectionOfMovement(Direction(target - position)))
+      {
+        case 1:
+        {
+         // Right
+         animator.SetBool(backward, false);
+         animator.SetBool(forward, false);
+         animator.SetBool(left, false);
+         animator.SetBool(right, true);
+         break;
+        }
+        case 2:
+        {
+          // Up
+          animator.SetBool(backward, true);
+          animator.SetBool(forward, false);
+          animator.SetBool(left, false);
+          animator.SetBool(right, false);
+          break;
+        }
+        case 3:
+        {
+          // left
+          animator.SetBool(backward, false);
+          animator.SetBool(forward, false);
+          animator.SetBool(left, true);
+          animator.SetBool(right, false);
+          break;
+        }
+        default:
+        {
+         // Down
+         animator.SetBool(backward, false);
+         animator.SetBool(forward, true);
+         animator.SetBool(left, false);
+         animator.SetBool(right, false);
+         break;
+        }
+      }
+
       isTargetNull = false;
     }
 
@@ -51,25 +95,40 @@ public class MainCharacterController : MonoBehaviour
     {
       transform.position = target;
       rb2d.velocity = Vector2.zero;
-      animator.SetBool(forward, false);
+      rb2d.angularVelocity = 0;
       animator.SetBool(backward, false);
-      return;
+      animator.SetBool(forward, false);
+      animator.SetBool(left, false);
+      animator.SetBool(right, false);
     }
+  }
 
-    //    Completed distance / total distance
-    float percentageCompleted = (originalPosition - position).sqrMagnitude / (originalPosition - target).sqrMagnitude;
-    Vector3 direction = (target - transform.position).normalized;
-    //    Ensure at least 30% speed at all times
-    rb2d.velocity = 0.75f * 2f * Mathf.Max(0.3f, 1 - percentageCompleted) * speed * direction;
-    if (rb2d.velocity.y > 0)
-    {
-      animator.SetBool(backward, true);
-      animator.SetBool(forward, false);
-    }
-    else if (rb2d.velocity.y < 0)
-    {
-      animator.SetBool(forward, true);
-      animator.SetBool(backward, false);
-    }
+  private void OnCollisionEnter2D(Collision2D other)
+  {
+    if (other.collider.isTrigger) return;
+    // Hit wall and stopped moving
+    rb2d.velocity = Vector2.zero;
+    rb2d.angularVelocity = 0;
+    animator.SetBool(backward, false);
+    animator.SetBool(forward, false);
+    animator.SetBool(left, false);
+    animator.SetBool(right, false);
+    target = transform.position;
+    isTargetNull = true;
+  }
+
+  private double Direction(Vector2 vec)
+  {
+    double val = Mathf.Rad2Deg * Math.Atan2(vec.y, vec.x);
+    if (val < 0) val += 360;
+    return val;
+  }
+
+  private int GetDirectionOfMovement(double angle)
+  {
+    if (angle < 45 || angle > 315) return 1;
+    if (angle > 45 && angle < 135) return 2;
+    if (angle > 135 && angle < 225) return 3;
+    return 4;
   }
 }
