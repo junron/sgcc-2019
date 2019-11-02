@@ -11,13 +11,13 @@ public class MainCharacterController : MonoBehaviour
   private bool isTargetNull = true;
   private bool isCameraNotNull;
   private Camera mainCamera;
-  private Vector3 originalPosition;
   private Animator animator;
 
   private static readonly int forward = Animator.StringToHash("forward");
   private static readonly int backward = Animator.StringToHash("backward");
   private static readonly int left = Animator.StringToHash("left");
   private static readonly int right = Animator.StringToHash("right");
+  private int movement = 0;
 
   // Start is called before the first frame update
   void Start()
@@ -43,19 +43,19 @@ public class MainCharacterController : MonoBehaviour
         target = position + Vector3.ClampMagnitude(clickPos - position, 10);
       }
 
-      originalPosition = position;
       target.z = position.z;
-      rb2d.AddForce((target - position) * 300);
       switch (GetDirectionOfMovement(Direction(target - position)))
       {
         case 1:
         {
-         // Right
-         animator.SetBool(backward, false);
-         animator.SetBool(forward, false);
-         animator.SetBool(left, false);
-         animator.SetBool(right, true);
-         break;
+          // Right
+          animator.SetBool(backward, false);
+          animator.SetBool(forward, false);
+          animator.SetBool(left, false);
+          animator.SetBool(right, true);
+          rb2d.AddForce(Math.Abs(target.x - position.x) * 300 * Vector2.right);
+          movement = 1;
+          break;
         }
         case 2:
         {
@@ -64,6 +64,8 @@ public class MainCharacterController : MonoBehaviour
           animator.SetBool(forward, false);
           animator.SetBool(left, false);
           animator.SetBool(right, false);
+          rb2d.AddForce(Math.Abs(target.y - position.y) * 300 * Vector2.up);
+          movement = 2;
           break;
         }
         case 3:
@@ -73,16 +75,20 @@ public class MainCharacterController : MonoBehaviour
           animator.SetBool(forward, false);
           animator.SetBool(left, true);
           animator.SetBool(right, false);
+          rb2d.AddForce(Math.Abs(target.x - position.x) * 300 * Vector2.left);
+          movement = 1;
           break;
         }
         default:
         {
-         // Down
-         animator.SetBool(backward, false);
-         animator.SetBool(forward, true);
-         animator.SetBool(left, false);
-         animator.SetBool(right, false);
-         break;
+          // Down
+          animator.SetBool(backward, false);
+          animator.SetBool(forward, true);
+          animator.SetBool(left, false);
+          animator.SetBool(right, false);
+          rb2d.AddForce(Math.Abs(target.y - position.y) * 300 * Vector2.down);
+          movement = 2;
+          break;
         }
       }
 
@@ -91,16 +97,25 @@ public class MainCharacterController : MonoBehaviour
 
     if (isTargetNull) return;
     //    Prevent jiggling when reach destination
-    if ((target - position).sqrMagnitude < 0.005)
+    if (movement == 1 && Math.Abs(position.x - target.x) < 0.005)
     {
-      transform.position = target;
-      rb2d.velocity = Vector2.zero;
-      rb2d.angularVelocity = 0;
-      animator.SetBool(backward, false);
-      animator.SetBool(forward, false);
-      animator.SetBool(left, false);
-      animator.SetBool(right, false);
+      transform.position = new Vector2(target.x, position.y);
+      reset();
+    }else if (movement == 2 && Math.Abs(position.y - target.y) < 0.005)
+    {
+      transform.position = new Vector2(position.x, target.y);
+      reset();
     }
+  }
+
+  private void reset()
+  {
+    rb2d.velocity = Vector2.zero;
+    rb2d.angularVelocity = 0;
+    animator.SetBool(backward, false);
+    animator.SetBool(forward, false);
+    animator.SetBool(left, false);
+    animator.SetBool(right, false);
   }
 
   private void OnCollisionEnter2D(Collision2D other)
