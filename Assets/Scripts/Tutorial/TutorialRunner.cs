@@ -16,17 +16,17 @@ public class TutorialRunner : MonoBehaviour
   private Vector3 target;
 
 
-
   private void Start()
   {
     target = transform.position;
-    Interactable giftObj = gift.GetComponent<Interactable>();
+    Touchable giftObj = gift.GetComponent<Touchable>();
     TutorialMask blobMask = new TutorialMask(blob, false, 4, 4);
     TutorialMask blobMask2 = new TutorialMask(blob, false, 10, 10);
     TutorialMask blobMask3 = new TutorialMask(blob, false, 4, 6);
     TutorialMask giftMask = new TutorialMask(gift, false, 10, 10);
     TutorialMask pathMask = new TutorialMask(null, pMask);
     MainCharacterController blobScript = blob.GetComponent<MainCharacterController>();
+    blobScript.inhibit = true;
     t = new Tutorial(tutorialText, "Falls", cam);
     t.Add(new TutorialComponent(blobMask,
       "This is you. You are an ordinary elderly person. You normally just stay at home and watch TV."));
@@ -40,40 +40,19 @@ public class TutorialRunner : MonoBehaviour
         "Yay! You did it!",
         callback =>
         {
-          giftObj.SetOnDetect(() =>
-          {
-            // Prevent interaction with gift from interfering with tutorial
-            giftObj.inhibitInteraction = true;
-            giftObj.SetOnDetect(null);
-            keys.SetActive(false);
-            callback();
-          });
-        }
-      )
-    );
-    t.Add(new InteractiveTutorialComponent(
-        pathMask,
-        "To pick the gift up, press space.",
-        "Yay! You did it!",
-        callback =>
-        {
-          giftObj.inhibitInteraction = false;
+          blobScript.inhibit = false;
           giftObj.callback = () =>
           {
-            gift.transform.parent = blob.transform;
-            gift.transform.position = new Vector3(-1, 2.2f, 0);
+            print("Yay");
             callback();
           };
         }
       )
     );
-    t.Add(new TutorialComponent(blobMask3,"That's right!"));
+    t.Add(new TutorialComponent(blobMask3, "That's right!"));
     t.Add(new TutorialComponent(null,
       "As your assistant, I have added indicators to remind you of your health, wealth and happiness throughout the game.",
-      () =>
-      {
-        bMask.SetActive(false);
-      }
+      () => { bMask.SetActive(false); }
     ));
     t.Start();
   }

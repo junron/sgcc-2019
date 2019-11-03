@@ -12,6 +12,7 @@ public class MainCharacterController : MonoBehaviour
   private bool isCameraNotNull;
   private Camera mainCamera;
   private Animator animator;
+  public bool inhibit;
 
   private static readonly int state = Animator.StringToHash("state");
   private int movement;
@@ -31,6 +32,7 @@ public class MainCharacterController : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
+    if(inhibit) return;
     Vector3 position = this.transform.position;
     if (Input.GetMouseButtonDown(0))
     {
@@ -46,7 +48,8 @@ public class MainCharacterController : MonoBehaviour
         case 1:
         {
           // Right
-          animator.SetInteger(state,1);
+          animator.SetInteger(state, 1);
+          animator.speed = 1;
           rb2d.AddForce(Math.Abs(target.x - position.x) * 300 * Vector2.right);
           movement = 1;
           break;
@@ -54,7 +57,8 @@ public class MainCharacterController : MonoBehaviour
         case 2:
         {
           // Up
-          animator.SetInteger(state,2);
+          animator.SetInteger(state, 2);
+          animator.speed = 1;
           rb2d.AddForce(Math.Abs(target.y - position.y) * 300 * Vector2.up);
           movement = 2;
           break;
@@ -62,7 +66,8 @@ public class MainCharacterController : MonoBehaviour
         case 3:
         {
           // left
-          animator.SetInteger(state,3);
+          animator.SetInteger(state, 3);
+          animator.speed = 1;
           rb2d.AddForce(Math.Abs(target.x - position.x) * 300 * Vector2.left);
           movement = 1;
           break;
@@ -70,24 +75,25 @@ public class MainCharacterController : MonoBehaviour
         default:
         {
           // Down
-          animator.SetInteger(state,4);
+          animator.SetInteger(state, 4);
+          animator.speed = 1;
           rb2d.AddForce(Math.Abs(target.y - position.y) * 300 * Vector2.down);
           movement = 2;
           break;
         }
       }
 
-      animator.speed = 1;
       isTargetNull = false;
     }
 
     if (isTargetNull) return;
     //    Prevent jiggling when reach destination
-    if (movement == 1 && Math.Abs(position.x - target.x) < 0.005)
+    if (movement == 1 && Math.Abs(position.x - target.x) < 0.1)
     {
       transform.position = new Vector2(target.x, position.y);
       Reset();
-    }else if (movement == 2 && Math.Abs(position.y - target.y) < 0.005)
+    }
+    else if (movement == 2 && Math.Abs(position.y - target.y) < 0.1)
     {
       transform.position = new Vector2(position.x, target.y);
       Reset();
