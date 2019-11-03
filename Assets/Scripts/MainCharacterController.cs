@@ -7,8 +7,8 @@ public class MainCharacterController : MonoBehaviour
 
   private Rigidbody2D rb2d;
 
-  private Vector3 target;
-  private bool isTargetNull = true;
+  public Vector3 target;
+  public bool isTargetNull = true;
   private bool isCameraNotNull;
   private Camera mainCamera;
   private Animator animator;
@@ -100,7 +100,7 @@ public class MainCharacterController : MonoBehaviour
     }
   }
 
-  private void Reset()
+  public void Reset()
   {
     rb2d.velocity = Vector2.zero;
     rb2d.angularVelocity = 0;

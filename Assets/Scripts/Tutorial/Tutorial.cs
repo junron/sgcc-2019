@@ -13,6 +13,7 @@ public class Tutorial
   private Camera cam;
   private readonly string s;
   public GameObject player;
+
   public Tutorial(Text textOutput, string s, Camera cam,
     string startText =
       "Welcome to Generation Silver! I’m your in-game assistant, here to help you get through the game! Press space to continue.",
@@ -50,7 +51,7 @@ public class Tutorial
     }
 
     ITutorialComponent prev = components[currentComponentIndex];
-    if (prev is InteractiveTutorialComponent && prev.completed != true)
+    if (prev.completed != true)
     {
       return;
     }
