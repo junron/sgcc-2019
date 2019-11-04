@@ -7,6 +7,10 @@ public class Touchable : MonoBehaviour
   public Action callback;
   private void OnTriggerEnter2D(Collider2D other)
   {
-    if (other.gameObject == target) callback();
+    if (other.gameObject == target)
+    {
+      Destroy(this.gameObject);
+      callback();
+    }
   }
 }

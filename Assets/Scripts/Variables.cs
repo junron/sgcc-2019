@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public static class Variables
@@ -8,4 +9,10 @@ public static class Variables
   public static int wealth = 75;
   public static GameObject player;
 
+  public static int tutorialGifts, fallGifts, socialGifts;
+
+  public static string GetTotalGifts()
+  {
+    return "" + (tutorialGifts + fallGifts + socialGifts);
+  }
 }
