@@ -8,6 +8,7 @@ public static class Variables
   public static int happiness = 75;
   public static int wealth = 75;
   public static GameObject player;
+  public static Report currentReport;
 
   public static int tutorialGifts, fallGifts, socialGifts;
 
