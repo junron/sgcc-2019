@@ -2242,7 +2242,7 @@ MonoBehaviour:
   correctAnswer: {fileID: 21300000, guid: 5911a937f8879464a9c17a64105c5529, type: 3}
   wrongAnswers:
   - {fileID: 21300000, guid: b39431366568ce846934dd5fb0bf6877, type: 3}
-  - {fileID: 21300000, guid: 4f6d86918bb346f4a89d3ce8a28274ed, type: 3}
+  - {fileID: 21300000, guid: 16ffbe521956f034d9b7058e9015f4bf, type: 3}
   tick1: {fileID: 21300000, guid: b7952ea064fbb09489e5f79a16b8b1cc, type: 3}
   cross1: {fileID: 21300000, guid: 92b9381d11f03bf4ab110379ea6a582b, type: 3}
 --- !u!212 &1068895679
@@ -2317,7 +2317,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1085972041}
   - component: {fileID: 1085972040}
-  - component: {fileID: 1085972039}
   - component: {fileID: 1085972038}
   - component: {fileID: 1085972036}
   m_Layer: 0
@@ -2373,25 +2372,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.8632436, y: 2.8292923}
   m_EdgeRadius: 0
---- !u!95 &1085972039
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1085972035}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2f65153b4ab39a54d868bc3af5eafb6b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!212 &1085972040
 SpriteRenderer:
   m_ObjectHideFlags: 0
