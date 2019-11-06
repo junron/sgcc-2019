@@ -7,7 +7,7 @@ public class Card : MonoBehaviour
   public int type;
   private static int CARD_INDEX;
   private static float xK = 0.8f, yK = 0.1f; //stands for x constant and y constant
-  private float[] x = {xK * -45, xK * -15, xK * 15, xK * 45}, y = {yK * -45, yK * -15, yK * 15, yK * 45};
+  private float[] x = {xK * -45, xK * -15, xK * 15, xK * 45}, y = {yK * -15, yK * 15};
   private int index;
   public bool deactivated;
   private int chosenSlot = -1;
@@ -43,12 +43,14 @@ public class Card : MonoBehaviour
     {
       if (chosenSlot != -1)
       {
+        print("hmm");
         //if already chosen
         MemoryGame.cardsChosen[chosenSlot] = -1; //remove from chosen slot
-        flip();
+        chosenSlot = -1;
       }
       else if (chosenSlot == -1)
       {
+        print("hmm3");
         //if not chosen
         if (MemoryGame.cardsChosen[0] == -1)
         {
@@ -62,29 +64,18 @@ public class Card : MonoBehaviour
           MemoryGame.cardsChosen[1] = index;
           chosenSlot = 1;
         }
-
-        flip();
       }
-    }
-  }
-
-
-  public void flip()
-  {
-    if (chosenSlot != -1)
-    {
-      chosenSlot = -1;
-      GetComponent<SpriteRenderer>().color = Color.black;
-    }
-
-    else if (chosenSlot == -1)
-    {
       SetColor();
     }
   }
 
-  private void SetColor()
+
+  public void SetColor()
   {
+    if (chosenSlot == -1){
+      GetComponent<SpriteRenderer>().color = Color.black;
+      return;
+    }
     switch (type)
     {
       case 0:
