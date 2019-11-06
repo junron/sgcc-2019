@@ -23,9 +23,9 @@ public class CameraClamp : MonoBehaviour
     {
       currTransform.position = new Vector3(-0.2f, position.y, -1);
     }
-    else if (position.x >= 1.3f)
+    else if (position.x >= 0.7f)
     {
-      currTransform.position = new Vector3(1.3f, position.y, -1);
+      currTransform.position = new Vector3(0.7f, position.y, -1);
     }
 
     // Y axis
@@ -33,9 +33,9 @@ public class CameraClamp : MonoBehaviour
     {
       currTransform.position = new Vector3(position.x, -3f, -1);
     }
-    else if (position.y >= 0.8)
+    else if (position.y >= 0.2)
     {
-      currTransform.position = new Vector3(position.x, 0.8f, -1);
+      currTransform.position = new Vector3(position.x, 0.2f, -1);
     }
   }
 }
