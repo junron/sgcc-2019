@@ -12,6 +12,8 @@ namespace Falls
     public String name, description;
     public Sprite correctAnswer;
     public Sprite[] wrongAnswers;
+    private static Sprite tick, cross;
+    public Sprite tick1, cross1;
     private static GameObject hazardPanel;
     private static Text titleText;
     private static Image hazardImage;
@@ -31,6 +33,8 @@ namespace Falls
 
     public void Start()
     {
+      if (tick1) tick = tick1;
+      if (cross1) cross = cross1;
       totalHazards++;
       if (hazardPanel != null) return;
       hazardPanel = GameObject.Find("HazardPanel");
@@ -85,6 +89,7 @@ namespace Falls
             {
               if (attempts == 1) correctAnswers++;
               feedbackPanel.gameObject.SetActive(true);
+              feedbackImage.sprite = tick;
               titleText3.text = "That's right!";
               descriptionText.text = description;
               nextBtn2.GetComponentInChildren<Text>().text = "Continue";
@@ -99,14 +104,15 @@ namespace Falls
                 if (correctAnswers != totalHazards) return;
                 // All hazards fixed
                 Variables.currentReport.onButtonClick = () => { print("yay"); };
-                Variables.currentReport.SetGifts(Mathf.Clamp(correctAnswers,1,3));
+                Variables.currentReport.SetGifts(Mathf.Clamp(correctAnswers, 1, 3));
               });
             }
             else
             {
+              feedbackImage.sprite = cross;
               button.GetComponentInChildren<Image>().color = new Color(1f, 1f, 1f, 0.33f);
               feedbackPanel.gameObject.SetActive(true);
-              titleText3.text = "That's not quite right!";
+              titleText3.text = "Alamak! Not correct leh!";
               descriptionText.text = "";
               nextBtn2.GetComponentInChildren<Text>().text = "Try again";
               nextBtn2.onClick.RemoveAllListeners();

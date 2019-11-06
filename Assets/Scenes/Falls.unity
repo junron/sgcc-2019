@@ -233,8 +233,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.85, y: 74.975}
-  m_SizeDelta: {x: 150.3, y: 123.65}
+  m_AnchoredPosition: {x: 10.1, y: 64.7}
+  m_SizeDelta: {x: 160.9, y: 144.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &47710938
 MonoBehaviour:
@@ -773,10 +773,12 @@ MonoBehaviour:
   name: messy wires
   description: Wires that are not organized can cause falls, as people can trip on
     them.
-  correctAnswer: {fileID: 21300000, guid: ff1b5df0127676a45a47a31a2fe23a0f, type: 3}
+  correctAnswer: {fileID: 21300000, guid: 5911a937f8879464a9c17a64105c5529, type: 3}
   wrongAnswers:
-  - {fileID: 21300000, guid: f0cbde2fbd923f24e8a1c658fb6edb1f, type: 3}
-  - {fileID: -7333939274004623610, guid: 5b3153baff2c10e4f894b6f4abf48f8a, type: 3}
+  - {fileID: 21300000, guid: b39431366568ce846934dd5fb0bf6877, type: 3}
+  - {fileID: 21300000, guid: 4f6d86918bb346f4a89d3ce8a28274ed, type: 3}
+  tick1: {fileID: 21300000, guid: b7952ea064fbb09489e5f79a16b8b1cc, type: 3}
+  cross1: {fileID: 21300000, guid: 92b9381d11f03bf4ab110379ea6a582b, type: 3}
 --- !u!70 &312312304
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -10736,6 +10738,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Report
       objectReference: {fileID: 0}
+    - target: {fileID: 4907736452148687441, guid: 3ac899b8a8de1364ca2200dbda225f3d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4907736452148687442, guid: 3ac899b8a8de1364ca2200dbda225f3d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10840,6 +10847,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4907736452148687443, guid: 3ac899b8a8de1364ca2200dbda225f3d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4907736452148687443, guid: 3ac899b8a8de1364ca2200dbda225f3d,
+        type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4907736452148687443, guid: 3ac899b8a8de1364ca2200dbda225f3d,
+        type: 3}
+      propertyPath: m_FillMethod
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4907736452148687443, guid: 3ac899b8a8de1364ca2200dbda225f3d,
+        type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4907736452148687443, guid: 3ac899b8a8de1364ca2200dbda225f3d,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4907736452148687443, guid: 3ac899b8a8de1364ca2200dbda225f3d,
+        type: 3}
+      propertyPath: m_FillOrigin
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4907736452148687443, guid: 3ac899b8a8de1364ca2200dbda225f3d,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4907736452148687443, guid: 3ac899b8a8de1364ca2200dbda225f3d,
+        type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ac899b8a8de1364ca2200dbda225f3d, type: 3}
