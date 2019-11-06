@@ -11,8 +11,6 @@ public class Exercise :MonoBehaviour
   [SerializeField] private GameObject target;
   [SerializeField] private Animator animator;
   [SerializeField] private Button demoButton;
-  [SerializeField] private HealthBar healthBar;
-  [SerializeField] private HealthBar happiness;
 
   private int textNo;
   private TargetBox targetBox;
@@ -21,7 +19,6 @@ public class Exercise :MonoBehaviour
   private void Start()
   {
     Debug.Log(Variables.fontSize);
-    healthBar.barValue = Variables.health;
     targetBox = target.GetComponent<TargetBox>();
     demoButton.onClick.AddListener(RunDemo);
     SetText(texts[0]);
@@ -51,10 +48,6 @@ public class Exercise :MonoBehaviour
     {
       if (completed && !taskCompleted)
       {
-        healthBar.barValue += 15;
-        happiness.barValue += 15;
-        Variables.health += 15;
-        Variables.happiness += 15;
       }
       if (completed) taskCompleted = true;
 
