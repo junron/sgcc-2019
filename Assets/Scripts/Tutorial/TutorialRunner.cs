@@ -12,7 +12,6 @@ public class TutorialRunner : MonoBehaviour
   [SerializeField] private GameObject pMask;
   [SerializeField] private GameObject cursor;
   [SerializeField] private GameObject bMask;
-  public Text gifts;
   private int cursor1State;
   private int cursorState2;
   private Tutorial t;
@@ -25,7 +24,6 @@ public class TutorialRunner : MonoBehaviour
 
   private void Start()
   {
-    gifts.text = Variables.GetTotalGifts();
     Touchable giftObj = gift.GetComponent<Touchable>();
     TutorialMask blobMask = new TutorialMask(blob, false, 4, 6);
     TutorialMask blobMask2 = new TutorialMask(null, bMask);
@@ -66,7 +64,7 @@ public class TutorialRunner : MonoBehaviour
         {
           callback();
           Variables.tutorialGifts = 1;
-          gifts.text = Variables.GetTotalGifts();
+          Variables.giftDisplay.UpdateGifts();
         };
       }
     );
