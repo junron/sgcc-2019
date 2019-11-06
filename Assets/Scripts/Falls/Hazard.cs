@@ -29,10 +29,12 @@ namespace Falls
     private static Button nextBtn2;
     private static int correctAnswers;
     private static int totalHazards;
+    private Sprite sprite;
     private int attempts;
 
     public void Start()
     {
+      sprite = GetComponent<SpriteRenderer>().sprite;
       if (tick1) tick = tick1;
       if (cross1) cross = cross1;
       totalHazards++;
@@ -64,12 +66,25 @@ namespace Falls
       hazardPanel.transform.parent.gameObject.SetActive(false);
       hazardMitigationPanel.gameObject.SetActive(false);
       feedbackPanel.gameObject.SetActive(false);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+      if (disabled) return;
+      if (other.gameObject != Variables.player) return;
+      // Freeze time
+      Time.timeScale = 0;
+      hazardPanel.transform.parent.gameObject.SetActive(true);
+      hazardImage.sprite = sprite;
+      titleText.text = "Hazard discovered: " + name;
+      descriptionText.text = description;
+      nextBtn.onClick.RemoveAllListeners();
       nextBtn.onClick.AddListener(() =>
       {
         hazardMitigationPanel.gameObject.SetActive(true);
         hazardPanel.gameObject.SetActive(false);
 
-        hazardImage2.sprite = GetComponent<SpriteRenderer>().sprite;
+        hazardImage2.sprite = sprite;
         titleText2.text = "Hazard: " + name;
         // Shuffle answers
         Sprite[] allImages = new[] {correctAnswer}.Concat(wrongAnswers).ToArray().OrderBy(a => Guid.NewGuid())
@@ -101,6 +116,7 @@ namespace Falls
                 hazardMitigationPanel.gameObject.SetActive(false);
                 hazardPanel.transform.parent.gameObject.SetActive(false);
                 correctAnswers++;
+                Time.timeScale = 1;
                 if (correctAnswers != totalHazards) return;
                 // All hazards fixed
                 Variables.currentReport.onButtonClick = () => { print("yay"); };
@@ -122,18 +138,6 @@ namespace Falls
           i++;
         }
       });
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-      if (disabled) return;
-      if (other.gameObject != Variables.player) return;
-      // Freeze time
-      Time.timeScale = 0;
-      hazardPanel.transform.parent.gameObject.SetActive(true);
-      hazardImage.sprite = GetComponent<SpriteRenderer>().sprite;
-      titleText.text = "Hazard discovered: " + name;
-      descriptionText.text = description;
     }
   }
 }

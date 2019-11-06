@@ -6,8 +6,9 @@ public class CameraClamp : MonoBehaviour
 
   public void FreezeMovement()
   {
-    parent = this.transform.parent;
-    this.transform.parent = null;
+    Transform transform1 = this.transform;
+    parent = transform1.parent;
+    transform1.parent = null;
   }
 
   public void Unfreeze()

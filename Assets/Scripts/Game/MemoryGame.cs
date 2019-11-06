@@ -55,8 +55,8 @@ public class MemoryGame : MonoBehaviour
     {
       cardsChosen[0] = -1;
       cardsChosen[1] = -1;
-      card1.flip();
-      card2.flip();
+      card1.SetColor();
+      card2.SetColor();
     }
   }
 }
