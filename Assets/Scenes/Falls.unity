@@ -1313,7 +1313,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.1400621, y: -1.2605572}
+  m_Offset: {x: -0.1400621, y: -1.0332699}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1324,7 +1324,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2801242, y: 1.3734894}
+  m_Size: {x: 1.2801242, y: 0.9189148}
   m_EdgeRadius: 0
 --- !u!1 &711140085
 GameObject:
@@ -2236,13 +2236,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disabled: 0
-  name: messy wires
-  description: Wires that are not organized can cause falls, as people can trip on
-    them.
-  correctAnswer: {fileID: 21300000, guid: 5911a937f8879464a9c17a64105c5529, type: 3}
+  name: Clothes on flor
+  description: Clothes are really slippery can mey cause falls by slipping or tripping
+  correctAnswer: {fileID: 21300000, guid: db65adaa18a046548b4b268c82d2ba9c, type: 3}
   wrongAnswers:
-  - {fileID: 21300000, guid: b39431366568ce846934dd5fb0bf6877, type: 3}
-  - {fileID: 21300000, guid: 16ffbe521956f034d9b7058e9015f4bf, type: 3}
+  - {fileID: 21300000, guid: e322c6531c3e2de45832f3d89d5146de, type: 3}
+  - {fileID: 21300000, guid: 44a3c207635aec94a856abf2428c7bf3, type: 3}
   tick1: {fileID: 21300000, guid: b7952ea064fbb09489e5f79a16b8b1cc, type: 3}
   cross1: {fileID: 21300000, guid: 92b9381d11f03bf4ab110379ea6a582b, type: 3}
 --- !u!212 &1068895679
@@ -2343,7 +2342,9 @@ MonoBehaviour:
   description: Broken furniture may collapse or tip over. People may trip on the broken
     pieces.
   correctAnswer: {fileID: 21300000, guid: 418cf69b79454d8458560edfb1735328, type: 3}
-  wrongAnswers: []
+  wrongAnswers:
+  - {fileID: 21300000, guid: 5911a937f8879464a9c17a64105c5529, type: 3}
+  - {fileID: 0}
   tick1: {fileID: 0}
   cross1: {fileID: 0}
 --- !u!61 &1085972038
@@ -2356,7 +2357,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.07953477, y: 0.11930084}
@@ -2557,7 +2558,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.1400621, y: -4.915509}
+  m_Offset: {x: -0.1400621, y: -4.785631}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2568,7 +2569,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2801242, y: 7.136057}
+  m_Size: {x: 1.2801242, y: 7.395813}
   m_EdgeRadius: 0
 --- !u!1 &1182221186
 GameObject:
@@ -2719,13 +2720,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disabled: 0
-  name: messy wires
-  description: Wires that are not organized can cause falls, as people can trip on
-    them.
-  correctAnswer: {fileID: 21300000, guid: 5911a937f8879464a9c17a64105c5529, type: 3}
+  name: Slippery floor
+  description: Places like the toilet may be wet and slippery, causing falls
+  correctAnswer: {fileID: 21300000, guid: 4335494dba69e62499563ade1036bd99, type: 3}
   wrongAnswers:
-  - {fileID: 21300000, guid: b39431366568ce846934dd5fb0bf6877, type: 3}
-  - {fileID: 21300000, guid: 4f6d86918bb346f4a89d3ce8a28274ed, type: 3}
+  - {fileID: 21300000, guid: 2266dadbbe18b6249872304f1ca44516, type: 3}
+  - {fileID: 21300000, guid: 8697523683fd24541886ee8438006e72, type: 3}
   tick1: {fileID: 21300000, guid: b7952ea064fbb09489e5f79a16b8b1cc, type: 3}
   cross1: {fileID: 21300000, guid: 92b9381d11f03bf4ab110379ea6a582b, type: 3}
 --- !u!212 &1218988226
@@ -4930,10 +4930,10 @@ MonoBehaviour:
   name: Messy wires
   description: Wires that are not organized can cause falls, as people can trip on
     them.
-  correctAnswer: {fileID: 21300000, guid: 5911a937f8879464a9c17a64105c5529, type: 3}
+  correctAnswer: {fileID: 21300000, guid: 44a3c207635aec94a856abf2428c7bf3, type: 3}
   wrongAnswers:
-  - {fileID: 21300000, guid: 4f6d86918bb346f4a89d3ce8a28274ed, type: 3}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 39ece03dd2ba6ba4d987b8a426cc1a07, type: 3}
+  - {fileID: 21300000, guid: e322c6531c3e2de45832f3d89d5146de, type: 3}
   tick1: {fileID: 21300000, guid: b7952ea064fbb09489e5f79a16b8b1cc, type: 3}
   cross1: {fileID: 21300000, guid: 92b9381d11f03bf4ab110379ea6a582b, type: 3}
 --- !u!61 &1844216572

@@ -71,6 +71,7 @@ namespace Falls
     private void OnTriggerEnter2D(Collider2D other)
     {
       if (disabled) return;
+      disabled = true;
       if (other.gameObject != Variables.player) return;
       // Freeze time
       Time.timeScale = 0;
