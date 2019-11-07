@@ -13,6 +13,7 @@ public class MainCharacterController : MonoBehaviour
   private Camera mainCamera;
   private Animator animator;
   public bool inhibit;
+  public bool inhibitInhibit;
 
   private static readonly int state = Animator.StringToHash("state");
   private int movement;
@@ -32,6 +33,7 @@ public class MainCharacterController : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
+    if(inhibitInhibit) return;
     if (inhibit)
     {
       rb2d.velocity = Vector2.zero;

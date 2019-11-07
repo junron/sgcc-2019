@@ -33,7 +33,7 @@ public class TutorialRunner : MonoBehaviour
     cameraClamp = blob.GetComponentInChildren<CameraClamp>();
     cameraClamp.FreezeMovement();
     mainCharacterController = blob.GetComponent<MainCharacterController>();
-    mainCharacterController.inhibit = true;
+    mainCharacterController.inhibitInhibit = true;
     t = new Tutorial(tutorialText, "Falls", cam);
     t.Add(new TutorialComponent(blobMask,
       "This is you. You are an ordinary elderly person. You normally just stay at home and watch TV."));
@@ -56,7 +56,7 @@ public class TutorialRunner : MonoBehaviour
         cursor1State = 0;
         blob.transform.position = new Vector2(-5.14f, -3.03f);
         mainCharacterController.Reset();
-        mainCharacterController.inhibit = false;
+        mainCharacterController.inhibitInhibit = false;
         cursor.SetActive(false);
         cursorState2 = 1;
         cursor.SetActive(true);
@@ -103,7 +103,7 @@ public class TutorialRunner : MonoBehaviour
     else if (freeGift.completed)
     {
       cursor.SetActive(false);
-      mainCharacterController.inhibit = true;
+      mainCharacterController.inhibitInhibit = true;
     }
 
     if (cursor1State == 1)
