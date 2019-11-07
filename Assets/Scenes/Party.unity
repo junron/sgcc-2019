@@ -626,19 +626,65 @@ PrefabInstance:
     - target: {fileID: 4907736452592626132, guid: aad162fc8423ca946909f152279dbcd9,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 142.8
+      value: 105.8
       objectReference: {fileID: 0}
     - target: {fileID: 4907736452592626132, guid: aad162fc8423ca946909f152279dbcd9,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 70.6
+      value: 144.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4907736453765601243, guid: aad162fc8423ca946909f152279dbcd9,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4907736453765601243, guid: aad162fc8423ca946909f152279dbcd9,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -74
+      objectReference: {fileID: 0}
+    - target: {fileID: 4907736453434856367, guid: aad162fc8423ca946909f152279dbcd9,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4907736453434856367, guid: aad162fc8423ca946909f152279dbcd9,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4907736453415352113, guid: aad162fc8423ca946909f152279dbcd9,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4907736453415352113, guid: aad162fc8423ca946909f152279dbcd9,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -134.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4907736453595711866, guid: aad162fc8423ca946909f152279dbcd9,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4907736453595711866, guid: aad162fc8423ca946909f152279dbcd9,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -100.5
       objectReference: {fileID: 0}
     - target: {fileID: 4907736452592626133, guid: aad162fc8423ca946909f152279dbcd9,
         type: 3}
       propertyPath: m_Text
-      value: Great job! You completed the game!
+      value: Great job! It's time for the birthday party!
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 4907736453415352114, guid: aad162fc8423ca946909f152279dbcd9,
+        type: 3}
+      propertyPath: m_Text
+      value: gifts in total!
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3868649858723890726, guid: aad162fc8423ca946909f152279dbcd9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: aad162fc8423ca946909f152279dbcd9, type: 3}
 --- !u!224 &1004066433 stripped
 RectTransform:
@@ -646,6 +692,24 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1004066432}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1004066434 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4907736453595711865, guid: aad162fc8423ca946909f152279dbcd9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1004066432}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1004066435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004066434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08909b83321246c08e52dc843b668fce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1230511660
 GameObject:
   m_ObjectHideFlags: 0

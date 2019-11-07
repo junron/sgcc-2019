@@ -37,7 +37,7 @@ public class TutorialRunner : MonoBehaviour
     t = new Tutorial(tutorialText, "Park", cam);
     t.Add(new TutorialComponent(blobMask,
       "This is you. You are an ordinary elderly person. You normally just stay at home and watch TV."));
-    t.Add(new TutorialComponent(blobMask, "But today is no ordinary day. It's your grandson's birthday."));
+    t.Add(new TutorialComponent(blobMask, "But today is no ordinary day. It's your grandson's 6th birthday."));
     t.Add(new TutorialComponent(giftMask, "You've prepared a gift for your grandson."));
     t.Add(new TutorialComponent("Let's test out your controls by moving to the gift and picking it up."));
     tutorialComponent = new TutorialComponent(blobMask2, "Click to move, like this.", () =>
