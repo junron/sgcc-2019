@@ -32,7 +32,12 @@ public class MainCharacterController : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    if(inhibit) return;
+    if (inhibit)
+    {
+      rb2d.velocity = Vector2.zero;
+      animator.SetInteger(state, 0);
+      return;
+    }
     Vector3 position = this.transform.position;
     if (Input.GetMouseButtonDown(0))
     {
@@ -43,6 +48,7 @@ public class MainCharacterController : MonoBehaviour
       }
 
       target.z = position.z;
+      rb2d.velocity = Vector2.zero;
       switch (GetDirectionOfMovement(Direction(target - position)))
       {
         case 1:

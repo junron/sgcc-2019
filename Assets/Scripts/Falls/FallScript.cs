@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class FallScript : MonoBehaviour
 {
+  private static FallScript fallScript;
   public Text text;
   public GameObject article;
   public GameObject player;
@@ -22,6 +23,7 @@ public class FallScript : MonoBehaviour
 
   private void Start()
   {
+    fallScript = this;
     player.GetComponent<MainCharacterController>().inhibit = true;
     text.text = script[counter];
     counter++;
@@ -29,24 +31,45 @@ public class FallScript : MonoBehaviour
 
   private void Update()
   {
-    if (Input.GetKeyDown("space"))
+    if (!Input.GetKeyDown("space")) return;
+    switch (counter)
     {
-      if (counter == 7)
-      {
+      case 6:
         player.GetComponent<MainCharacterController>().inhibit = false;
+        break;
+      case 8:
+        text.text = "You: No problem lah! Neighbours always help one another!";
+        counter++;
         return;
-      }
-      text.text = script[counter];
-      counter++;
-      if (counter == 3)
-      {
-        article.SetActive(true);
-      }
-
-      if (counter == 5)
-      {
-        article.SetActive(false);
-      }
+      case 9:
+        text.text = "Press space to return back to the park!";
+        counter++;
+        return;
+      case 10:
+        print("yay");
+        counter++;
+        return;
+      case 11:
+      case 7:
+        return;
     }
+
+    text.text = script[counter];
+    counter++;
+    if (counter == 3)
+    {
+      article.SetActive(true);
+    }
+
+    if (counter == 5)
+    {
+      article.SetActive(false);
+    }
+  }
+
+  public static void Complete()
+  {
+    fallScript.text.text = "Mr Tay: Thank you so much! Now my house is much safer!";
+    fallScript.counter++;
   }
 }
