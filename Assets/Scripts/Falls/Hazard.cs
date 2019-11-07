@@ -75,6 +75,7 @@ namespace Falls
       if (other.gameObject != Variables.player) return;
       // Freeze time
       Time.timeScale = 0;
+      Variables.player.GetComponent<MainCharacterController>().inhibit = true;
       hazardPanel.transform.parent.gameObject.SetActive(true);
       hazardImage.sprite = sprite;
       titleText.text = "Hazard discovered: " + name;
@@ -96,6 +97,7 @@ namespace Falls
           int i1 = i;
           button.transform.GetComponentInChildren<Image>().sprite = allImages[i];
           button.GetComponentInChildren<Text>().text = allImages[i].name;
+          button.GetComponentInChildren<Image>().color = new Color(1f, 1f, 1f, 1f);
           button.onClick.AddListener(() =>
           {
             attempts++;
@@ -118,6 +120,7 @@ namespace Falls
                 hazardPanel.transform.parent.gameObject.SetActive(false);
                 correctAnswers++;
                 Time.timeScale = 1;
+                Variables.player.GetComponent<MainCharacterController>().inhibit = true;
                 if (correctAnswers != totalHazards) return;
                 // All hazards fixed
                 Variables.currentReport.onButtonClick = () => { print("yay"); };
