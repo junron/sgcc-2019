@@ -11,10 +11,15 @@ public static class Variables
   public static Report currentReport;
   public static GiftDisplay giftDisplay;
 
-  public static int tutorialGifts, fallGifts, socialGifts;
+  public static int tutorialGifts, fallGifts, socialGifts, exerciseGifts;
 
   public static string GetTotalGifts()
   {
-    return "" + (tutorialGifts + fallGifts + socialGifts);
+    return "" + (tutorialGifts + fallGifts + socialGifts + exerciseGifts);
+  }
+
+  public static bool AllAttempted()
+  {
+    return tutorialGifts > 0 && fallGifts > 0 && exerciseGifts > 0 && socialGifts > 0;
   }
 }

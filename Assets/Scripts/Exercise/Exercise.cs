@@ -1,73 +1,73 @@
 using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Exercise :MonoBehaviour
+public class Exercise : MonoBehaviour
 {
-  [SerializeField] private Text tPlayer;
-  [SerializeField] private string[] texts;
-  [SerializeField] private int taskStartStringNo;
-  [SerializeField] private GameObject target;
-  [SerializeField] private Animator animator;
-  [SerializeField] private Button demoButton;
+  private static Exercise exercise;
+  public Text text;
+  public GameObject hinge;
+  public GameObject parent;
+  private int counter;
 
-  private int textNo;
-  private TargetBox targetBox;
-  private bool taskCompleted;
+  private String[] script =
+  {
+    "You: Mr Tay! Nice to see you at the park again!",
+    "Mr Tay: Whoa, time flies ah, so fast your grandson 6 years old already!",
+    "You: Yalor, I also feel much older than before! I don't feel as strong anymore! What's your secret to your strength at such an age?",
+    "Mr Tay: Heh, I can teach you one exercise! You'll feel much stronger after doing it for a while.",
+    "You: Whoa, really so magic ah?!!",
+    "Mr Tay: Let me show you the Side Leg Raise! It's recommended by the Health Promotion Board as one of the exercises for active aging!",
+    "Mr Tay: Make sure you hold on to a chair first ah, so you can balance!",
+    "Mr Tay: Simply raise your left leg like this!",
+    "You: Whoa, so simple ah? Let me try!",
+    "Task: Drag your left leg upwards!",
+    "You: Whoa, It's really so easy! I'm doing this exercise every day!",
+    "Mr Tay: Nice! Now you can share this with other people!",
+  };
 
   private void Start()
   {
-    Debug.Log(Variables.fontSize);
-    targetBox = target.GetComponent<TargetBox>();
-    demoButton.onClick.AddListener(RunDemo);
-    SetText(texts[0]);
+    hinge.GetComponent<Animator>().speed = 0;
+    exercise = this;
+    text.text = script[counter];
+    counter++;
+    parent.SetActive(false);
   }
 
   private void Update()
   {
-    if (!Input.GetKeyDown(KeyCode.Space)) return;
-//  Block until task is completed;
-    if (textNo == taskStartStringNo && !taskCompleted) return;
-    textNo++;
-    if (textNo >= texts.Length)
-    {
-      Destroy(this.gameObject);
-      return;
-    }
-    SetText(texts[textNo]);
-    if (textNo == 8)
-    {
-      StartCoroutine(WaitAndDo(0.75f, RunDemo));
-    }
-    if (textNo != taskStartStringNo) return;
-    target.SetActive(true);
-    StartCoroutine(WaitAndDo(2, () => { SetText("Move your left leg into the black box"); }));
+    if (!Input.GetKeyDown("space")) return;
 
-    targetBox.onStateChange = completed =>
+    text.text = script[counter];
+    counter++;
+    if (counter == 8)
     {
-      if (completed && !taskCompleted)
+      hinge.GetComponent<Animator>().speed = 1;
+    }
+
+    if (counter == 9)
+    {
+      hinge.GetComponent<Animator>().speed = 0;
+      hinge.SetActive(false);
+      hinge.SetActive(true);
+      hinge.GetComponent<Animator>().speed = 0;
+    }
+
+    if (counter == 12)
+    {
+      Variables.currentReport.onButtonClick = () =>
       {
-      }
-      if (completed) taskCompleted = true;
-
-      tPlayer.text = taskCompleted ? "Task completed!" : "Move your left leg into the black box";
-      target.GetComponent<SpriteRenderer>().color = completed ? Color.green : Color.black;
-    };
+        Interstitials.Initiate("Park");
+      };
+      Variables.exerciseGifts = 3;
+      Variables.currentReport.SetGifts(3);
+      Variables.giftDisplay.UpdateGifts();
+    }
   }
 
-  private void SetText(string text)
+  public static void Complete()
   {
-    tPlayer.text = text;
-  }
-
-  private void RunDemo()
-  {
-    demoButton.gameObject.SetActive(true);
-    animator.SetTrigger("StartDemo");
-  }
-  IEnumerator WaitAndDo (float time, Action action) {
-    yield return new WaitForSeconds (time);
-    action();
+    exercise.text.text = "Task complete!";
   }
 }

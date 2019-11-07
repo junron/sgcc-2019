@@ -138,7 +138,9 @@ namespace Falls
 
                 // All hazards fixed
                 Variables.currentReport.onButtonClick = FallScript.Complete;
+                Variables.fallGifts = Mathf.Clamp(correctAnswers, 1, 3);
                 Variables.currentReport.SetGifts(Mathf.Clamp(correctAnswers, 1, 3));
+                Variables.giftDisplay.UpdateGifts();
               });
             }
             else

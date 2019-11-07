@@ -34,7 +34,7 @@ public class TutorialRunner : MonoBehaviour
     cameraClamp.FreezeMovement();
     mainCharacterController = blob.GetComponent<MainCharacterController>();
     mainCharacterController.inhibitInhibit = true;
-    t = new Tutorial(tutorialText, "Falls", cam);
+    t = new Tutorial(tutorialText, "Park", cam);
     t.Add(new TutorialComponent(blobMask,
       "This is you. You are an ordinary elderly person. You normally just stay at home and watch TV."));
     t.Add(new TutorialComponent(blobMask, "But today is no ordinary day. It's your grandson's birthday."));

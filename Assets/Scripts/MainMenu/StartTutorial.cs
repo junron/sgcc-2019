@@ -5,6 +5,6 @@ public class StartTutorial : MonoBehaviour
 {
   public void LoadTutorial()
   {
-    SceneManager.LoadScene("Tutorial");
+    Interstitials.Initiate("Tutorial");
   }
 }
