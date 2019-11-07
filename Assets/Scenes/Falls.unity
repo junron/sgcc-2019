@@ -559,7 +559,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 24
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -2236,8 +2236,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disabled: 0
-  name: Clothes on flor
-  description: Clothes are really slippery can mey cause falls by slipping or tripping
+  name: Clothes on floor
+  description: Clothes are really slippery can may cause falls by slipping or tripping
   correctAnswer: {fileID: 21300000, guid: db65adaa18a046548b4b268c82d2ba9c, type: 3}
   wrongAnswers:
   - {fileID: 21300000, guid: e322c6531c3e2de45832f3d89d5146de, type: 3}
@@ -2720,7 +2720,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disabled: 0
-  name: Slippery floor
+  name: Wet floor
   description: Places like the toilet may be wet and slippery, causing falls
   correctAnswer: {fileID: 21300000, guid: 4335494dba69e62499563ade1036bd99, type: 3}
   wrongAnswers:
@@ -4012,7 +4012,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -147}
+  m_AnchoredPosition: {x: 0, y: -166}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1650291578
@@ -5425,8 +5425,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -70}
-  m_SizeDelta: {x: 310.1, y: 94.7}
+  m_AnchoredPosition: {x: 0, y: -81.6}
+  m_SizeDelta: {x: 310.1, y: 118}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2065229089
 MonoBehaviour:

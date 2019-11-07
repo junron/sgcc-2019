@@ -82,6 +82,6 @@ public class Tutorial
   private void Continue()
   {
     Time.timeScale = 1;
-    SceneManager.LoadScene(s);
+    Interstitials.Initiate(s);
   }
 }

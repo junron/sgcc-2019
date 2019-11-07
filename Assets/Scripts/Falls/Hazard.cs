@@ -29,8 +29,10 @@ namespace Falls
     private static Button nextBtn2;
     private static int correctAnswers;
     private static int totalHazards;
+    private static int clearedHazards;
     private Sprite sprite;
     private int attempts;
+    private static Text descriptionText2;
 
     public void Start()
     {
@@ -59,6 +61,7 @@ namespace Falls
       Assert.IsNotNull(feedbackPanel);
       titleText3 = feedbackPanel.transform.Find("TitleText").GetComponent<Text>();
       Assert.IsNotNull(titleText3);
+      descriptionText2 = feedbackPanel.transform.Find("Description").GetComponent<Text>();
       feedbackImage = feedbackPanel.transform.Find("FeedbackImage").GetComponent<Image>();
       Assert.IsNotNull(feedbackImage);
       nextBtn2 = feedbackPanel.transform.Find("NextBtn").GetComponent<Button>();
@@ -74,7 +77,6 @@ namespace Falls
       disabled = true;
       if (other.gameObject != Variables.player) return;
       // Freeze time
-      Time.timeScale = 0;
       Variables.player.GetComponent<MainCharacterController>().inhibit = true;
       hazardPanel.transform.parent.gameObject.SetActive(true);
       hazardImage.sprite = sprite;
@@ -98,6 +100,7 @@ namespace Falls
           button.transform.GetComponentInChildren<Image>().sprite = allImages[i];
           button.GetComponentInChildren<Text>().text = allImages[i].name;
           button.GetComponentInChildren<Image>().color = new Color(1f, 1f, 1f, 1f);
+          button.onClick.RemoveAllListeners();
           button.onClick.AddListener(() =>
           {
             attempts++;
@@ -105,11 +108,20 @@ namespace Falls
             Sprite image = allImages[i1];
             if (image == correctAnswer)
             {
+              clearedHazards++;
               if (attempts == 1) correctAnswers++;
               feedbackPanel.gameObject.SetActive(true);
               feedbackImage.sprite = tick;
               titleText3.text = "That's right!";
-              descriptionText.text = description;
+              if (name == "Wet floor")
+              {
+                descriptionText2.text = "Other installations like grab bars can make your bathroom safer.\n" +
+                                   "The HDB EASE scheme can help reduce the costs of upgrading by up to 95%!";
+              }
+              else
+              {
+                descriptionText2.text = "";
+              }
               nextBtn2.GetComponentInChildren<Text>().text = "Continue";
               nextBtn2.onClick.RemoveAllListeners();
               nextBtn2.onClick.AddListener(() =>
@@ -118,12 +130,14 @@ namespace Falls
                 hazardPanel.gameObject.SetActive(true);
                 hazardMitigationPanel.gameObject.SetActive(false);
                 hazardPanel.transform.parent.gameObject.SetActive(false);
-                correctAnswers++;
-                Time.timeScale = 1;
-                Variables.player.GetComponent<MainCharacterController>().inhibit = true;
-                if (correctAnswers != totalHazards) return;
+                if (clearedHazards != totalHazards)
+                {
+                  Variables.player.GetComponent<MainCharacterController>().inhibit = false;
+                  return;
+                }
+
                 // All hazards fixed
-                Variables.currentReport.onButtonClick = () => { print("yay"); };
+                Variables.currentReport.onButtonClick = FallScript.Complete;
                 Variables.currentReport.SetGifts(Mathf.Clamp(correctAnswers, 1, 3));
               });
             }
