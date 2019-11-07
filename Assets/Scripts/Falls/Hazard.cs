@@ -120,7 +120,7 @@ namespace Falls
                 hazardPanel.transform.parent.gameObject.SetActive(false);
                 correctAnswers++;
                 Time.timeScale = 1;
-                Variables.player.GetComponent<MainCharacterController>().inhibit = true;
+                Variables.player.GetComponent<MainCharacterController>().inhibit = false;
                 if (correctAnswers != totalHazards) return;
                 // All hazards fixed
                 Variables.currentReport.onButtonClick = () => { print("yay"); };
