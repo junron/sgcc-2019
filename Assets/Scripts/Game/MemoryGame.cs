@@ -31,6 +31,7 @@ public class MemoryGame : MonoBehaviour
   { 
     if (end)
     {
+      Interstitials.Initiate("Park");
       return;
     }
 
@@ -148,7 +149,7 @@ public class MemoryGame : MonoBehaviour
     if(pScore + AIScore == cardNo/2)
     {
       end = true;
-      gameText.text = "Well done! You collected " + pScore + " gifts from the level! Do you want to repeat it?";
+      gameText.text = "Well done! You collected " + Mathf.Clamp(pScore,1,3) + " gifts from the level! Do you want to repeat it?";
     }
   }
   void Nothing()
