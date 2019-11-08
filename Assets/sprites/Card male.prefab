@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6100141972588430464}
   - component: {fileID: 8731745118411044914}
   - component: {fileID: 4238199247385150953}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Card male
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,6 +95,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   deactivated: 0
+  chosenSlot: -1
 --- !u!61 &4238199247385150953
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -6,11 +6,11 @@ public class Card : MonoBehaviour
 {
   public int type;
   private static int CARD_INDEX;
-  private static float xK = 0.8f, yK = 0.1f; //stands for x constant and y constant
+  private static float xK = 0.3f, yK = 0.3f; //stands for x constant and y constant
   private float[] x = {xK * -45, xK * -15, xK * 15, xK * 45}, y = {yK * -15, yK * 15};
   private int index;
   public bool deactivated;
-  private int chosenSlot = -1;
+  public int chosenSlot = -1;
 
   private static int[] types = {0, 0, 1, 1, 2, 2, 3, 3, -1};
 
@@ -41,31 +41,7 @@ public class Card : MonoBehaviour
 
     if (Input.GetMouseButtonDown(0))
     {
-      if (chosenSlot != -1)
-      {
-        print("hmm");
-        //if already chosen
-        MemoryGame.cardsChosen[chosenSlot] = -1; //remove from chosen slot
-        chosenSlot = -1;
-      }
-      else if (chosenSlot == -1)
-      {
-        print("hmm3");
-        //if not chosen
-        if (MemoryGame.cardsChosen[0] == -1)
-        {
-          //if slot0 not chosen
-          MemoryGame.cardsChosen[0] = index;
-          chosenSlot = 0;
-        }
-        else if (MemoryGame.cardsChosen[1] != -1)
-        {
-          // if slot1 not chosen
-          MemoryGame.cardsChosen[1] = index;
-          chosenSlot = 1;
-        }
-      }
-      SetColor();
+      ChooseCard();
     }
   }
 
@@ -91,5 +67,37 @@ public class Card : MonoBehaviour
         GetComponent<SpriteRenderer>().color = Color.blue;
         break;
     }
+  }
+
+  public void ChooseCard()
+  {
+    if (chosenSlot != -1)
+    {
+      //print("hmm");
+      //if already chosen
+      MemoryGame.cardsChosen[chosenSlot] = -1; //remove from chosen slot
+      chosenSlot = -1;
+    }
+    else if (chosenSlot == -1)
+    {
+      //print("hmm3");
+      //if not chosen
+      if (MemoryGame.cardsChosen[0] == -1)
+      {
+        //if slot0 not chosen
+        //print("slot0 taken");
+        MemoryGame.cardsChosen[0] = index;
+        chosenSlot = 0;
+      }
+      else if (MemoryGame.cardsChosen[1] == -1)
+      {
+        // if slot1 not chosen
+        //print("slot1 taken");
+        MemoryGame.cardsChosen[1] = index;
+        chosenSlot = 1;
+      }
+    }
+    //print("[" + MemoryGame.cardsChosen[0] + ", " + MemoryGame.cardsChosen[1] + "]");
+    SetColor();
   }
 }
