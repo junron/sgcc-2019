@@ -130,6 +130,7 @@ namespace Falls
                 hazardPanel.gameObject.SetActive(true);
                 hazardMitigationPanel.gameObject.SetActive(false);
                 hazardPanel.transform.parent.gameObject.SetActive(false);
+				Destroy(this.gameObject);
                 if (clearedHazards != totalHazards)
                 {
                   Variables.player.GetComponent<MainCharacterController>().inhibit = false;
